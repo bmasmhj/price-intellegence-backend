@@ -36,6 +36,7 @@ class UserProductController extends Controller
                         'price' => $product->price,
                         'rrp_price' => $product->rrp_price,
                         'price_change_percent' => $product->price_change_percent,
+                        'status' => $product->status,
                         'price_direction' => $product->price_direction,
                         'updated_at' => $product->updated_at,
                         'has_history' => ($product->pricing_history_count > 0),

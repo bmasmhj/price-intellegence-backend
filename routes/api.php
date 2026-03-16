@@ -25,3 +25,7 @@ Route::post('user-products/{userProduct}/unlink', [UserProductController::class,
 Route::post('products/search-by-url', [UserProductController::class, 'searchProductByUrl']);
 // Pricing History (scoped to a product)
 Route::get('products/{product}/pricing-history', [PricingHistoryController::class, 'index']);
+
+// Products API
+Route::get('products', [\App\Http\Controllers\Api\ProductController::class, 'index']);
+Route::get('products/company/{companyId}', [\App\Http\Controllers\Api\ProductController::class, 'byCompany']);
