@@ -26,7 +26,6 @@ class CompanyController extends Controller
             'company_name' => 'required|string|max:100',
             'url' => 'required|string|max:255',
             'full_script' => 'nullable|string|max:50',
-            'status' => 'required|integer',
         ]);
 
         $validated['created_at'] = now();
@@ -48,8 +47,7 @@ class CompanyController extends Controller
         $validated = $request->validate([
             'company_name' => 'sometimes|string|max:100',
             'url' => 'sometimes|string|max:255',
-            'full_script' => 'sometimes|string|max:50',
-            'status' => 'sometimes|integer',
+            'full_script' => 'nullable|string|max:50',
         ]);
 
         $company->update($validated);
@@ -66,7 +64,7 @@ class CompanyController extends Controller
 
     public function logs(Request $request, Company $company)
     {
-        $statusMap = ['completed' => 1, 'processing' => 2, 'error' => 3];
+        $statusMap = ['completed' => 1, 'processing' => 2, 'error' => 3 , 'no_script' => 4];
 
         $query = ScrapperLog::where('company_id', $company->id)
             ->orderByDesc('started_at');
